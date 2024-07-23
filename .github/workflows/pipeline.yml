@@ -1,0 +1,24 @@
+name: main-build
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: flyway_flyway
+
+      - name: Change directory
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Java version
+        run: java --version
+
+      - name: Run flyway
+        run: |    
+          flyway --version
